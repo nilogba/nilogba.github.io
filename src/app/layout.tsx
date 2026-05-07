@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Typefolio",
-  description: "Typefolio - Nextjs Templates",
+  title: "Niloy Sarkar",
+  description: "Software Engineer at BlackRock — building risk infrastructure, web systems, and data pipelines.",
 };
 
 export default function RootLayout({

@@ -1,0 +1,5 @@
+{
+  "/api/featured-work/route": "app/api/featured-work/route.js",
+  "/api/page-data/route": "app/api/page-data/route.js",
+  "/page": "app/page.js"
+}

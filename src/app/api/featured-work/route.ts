@@ -2,16 +2,17 @@ import { NextResponse } from "next/server";
 
 const featureWork = [
     {
-        title: "Branding + Web Design for Cleaning Services",
-        description: "Developed a modern brand identity and a responsive web experience tailored for a professional cleaning company, focused on clarity and usability.",
-        roles: ["UX Designer", "Framer Designer"],
+        title: "Terrain Classifier · Computer Vision",
+        description: "5-class terrain classifier using Support Vector Machines with OpenCV and HOG feature extraction — trained to identify terrain types from image data.",
+        roles: ["Python", "OpenCV", "Scikit-learn"],
         image: "/images/feature-work/feature-img-1.png"
     },
     {
-        title: "Brand Identity for a Health Care Company",
-        description: "Created a distinctive visual identity and design language to build trust and empathy for a forward-thinking health care provider.",
-        roles: ["UX Designer", "Framer Designer"],
-        image: "/images/feature-work/feature-img-2.png"
+        title: "BSE vs NSE · Stock Price Comparison",
+        description: "Real-time web app for comparing live stock prices across Bombay Stock Exchange and National Stock Exchange. Enter any BSE-listed company and instantly see a live graph of price differences between the two exchanges.",
+        roles: ["Python", "Flask", "Web Scraping"],
+        image: "https://upload.wikimedia.org/wikipedia/commons/4/4b/BSE_building_at_Dalal_Street.JPG",
+        url: "https://github.com/ibinsigma/BSE-vs-NSE-Stock"
     }
 ]
 
