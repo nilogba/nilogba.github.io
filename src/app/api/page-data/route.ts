@@ -2,46 +2,46 @@ import { NextResponse } from "next/server";
 
 const experienceData = [
     {
-        icon: "/images/icon/tailwind-icon.svg",
-        role: "Product Designer, Tailwind",
-        location: "Remote",
-        startYear: "2022",
+        icon: "/images/icon/blackrock-icon.svg",
+        role: "Software Engineer · BlackRock",
+        location: "Gurgaon, India",
+        startYear: "2021",
         endYear: "Present",
         bulletPoints: [
-            "Led end-to-end redesign of dashboard UI, improving user retention by 23%",
-            "Collaborated with engineers and product managers to ship features faster",
-            "Designed components used in a system adopted by 4+ internal teams"
+            "Built Risk-Based Capital Calculator supporting $300bn+ client portfolio deal using SpringBoot and JavaScript",
+            "Reduced computation time by 75% through multithreading; integrated Kafka for real-time notifications",
+            "Developed Angular frontend processing 100k+ QC alerts and a regression suite saving 50 man-hours per release"
         ]
     },
     {
-        icon: "/images/icon/asana-icon.svg",
-        role: "UI/UX Designer - Asana",
-        location: "New York, NY",
-        startYear: "2019",
-        endYear: "2022",
+        icon: "/images/icon/iyf-icon.svg",
+        role: "Web Development Intern · India Young Foundation",
+        location: "Remote",
+        startYear: "May 2020",
+        endYear: "Jun 2020",
         bulletPoints: [
-            "Created design systems for client projects across finance and healthcare",
-            "Conducted user testing and research to validate designs",
-            "Helped junior designers grow via mentorship"
+            "Built Django backend from scratch with PayTM payment gateway integration and multilingual support",
+            "Deployed on DigitalOcean with Nginx and Gunicorn; managed DNS and SSL via GoDaddy",
+            "Integrated Cloudflare CDN and Google Analytics for performance and tracking"
         ]
     },
 ]
 
 const educationData = [
     {
-        date: "Sep 2015 - May 2019",
-        title: "B.F.A. in Graphic Design",
-        subtitle: "Pratt Institute — Brooklyn, NY"
+        date: "Jul 2017 – May 2021",
+        title: "B.Tech in Information Technology",
+        subtitle: "Manipal Institute of Technology — Manipal, Karnataka · CGPA 7.6"
     },
     {
-        date: "Mar 2021 - Aug 2021",
-        title: "UX Design Certificate",
-        subtitle: "Google UX Design - Coursera"
+        date: "2015 – 2017",
+        title: "All India Senior School Certificate (12th)",
+        subtitle: "Delhi Public School — Ranchi · 90.6% (PCM + CS)"
     },
     {
-        date: "Jan 2020 - Mar 2020",
-        title: "Front-End Web Development Bootcamp",
-        subtitle: "General Assembly — New York, NY"
+        date: "2004 – 2015",
+        title: "All India Secondary School Examination (10th)",
+        subtitle: "Delhi Public School — Ranchi · 10 CGPA"
     }
 ];
 

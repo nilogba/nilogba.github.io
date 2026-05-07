@@ -4,7 +4,7 @@ import Education from "./components/home/education"
 import Experience from "./components/home/experience"
 import FeaturedWork from "./components/home/featured-work"
 import HeroSection from "./components/home/hero-section"
-import ProjectOverview from "./components/home/project-overview"
+import MediaCarousel from "./components/home/media-carousel"
 
 const page = () => {
   return (
@@ -13,13 +13,13 @@ const page = () => {
       <Divider/>
       <AboutMe/>
       <Divider/>
-      <FeaturedWork/>
-      <Divider/>
       <Experience/>
       <Divider/>
       <Education/>
       <Divider/>
-      <ProjectOverview/>
+      <FeaturedWork/>
+      <Divider/>
+      <MediaCarousel/>
       <Divider/>
     </main>
   )
