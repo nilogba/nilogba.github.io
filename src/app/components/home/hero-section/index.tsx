@@ -9,11 +9,6 @@ const HeroSection = () => {
             href: "https://www.linkedin.com/in/ibinsigma/",
             icon: "LinkedIn"
         },
-        {
-            img: "/images/icon/strava-icon.svg",
-            href: "https://www.strava.com/athletes/709593",
-            icon: "Strava"
-        },
     ];
     return (
         <section>
@@ -38,32 +33,86 @@ const HeroSection = () => {
                                     <p className="text-primary">Gurgaon, India</p>
                                 </div>
                             </div>
-                            <div className="flex flex-col md:flex-row items-center gap-4">
-                                <div className="flex items-center gap-2">
-                                    {socialIcon?.map((value, index) => {
-                                        return (
+                            <div className="flex flex-col items-center xs:items-end gap-3">
+                                {/* Row 1: socials + primary CTA buttons */}
+                                <div className="flex flex-wrap items-center justify-center xs:justify-end gap-2">
+                                    <div className="flex items-center gap-1.5">
+                                        {socialIcon?.map((value, index) => (
                                             <Link href={value?.href} key={index} className="w-fit p-2.5 sm:p-3.5 hover:bg-primary/5 border border-primary/10 rounded-full">
                                                 <Image src={value?.img} alt={value?.icon} width={18} height={18} />
                                             </Link>
-                                        )
-                                    })}
-                                </div>
-                                <Button asChild className="h-auto rounded-full p-0.5!">
+                                        ))}
+                                    </div>
+                                    <Button asChild className="h-auto rounded-full p-0.5!">
+                                        <Link
+                                            href="mailto:niloysarkarranchi@gmail.com"
+                                            className="inline-block p-0.5 rounded-full bg-[linear-gradient(96.09deg,_#9282F8_12.17%,_#F3CA4D_90.71%)]"
+                                        >
+                                            <span className="flex items-center gap-2.5 bg-primary hover:bg-[linear-gradient(96.09deg,_#9282F8_12.17%,_#F3CA4D_90.71%)] py-2.5 px-4 rounded-full">
+                                                <Image src="/images/icon/spark-icon.svg" alt="spark-icon" width={14} height={14} />
+                                                <span className="text-sm sm:text-base font-semibold text-white">Get in touch</span>
+                                            </span>
+                                        </Link>
+                                    </Button>
                                     <Link
-                                        href="mailto:niloysarkarranchi@gmail.com"
-                                        className="inline-block p-0.5 rounded-full bg-[linear-gradient(96.09deg,_#9282F8_12.17%,_#F3CA4D_90.71%)]"
+                                        href="/training"
+                                        className="flex items-center gap-2 bg-[#FC4C02] hover:bg-[#e04300] transition-colors py-2 px-4 rounded-full"
                                     >
-                                        <span className="flex items-center gap-3 bg-primary hover:bg-[linear-gradient(96.09deg,_#9282F8_12.17%,_#F3CA4D_90.71%)] py-2.5 px-5 rounded-full">
-                                            <Image
-                                                src="/images/icon/spark-icon.svg"
-                                                alt="spark-icon"
-                                                width={14}
-                                                height={14}
-                                            />
-                                            <span className="text-sm sm:text-base font-semibold text-white">Get in touch</span>
-                                        </span>
+                                        <Image src="/images/icon/strava-icon.svg" alt="strava" width={13} height={13} className="invert" />
+                                        <span className="text-sm font-semibold text-white">Training</span>
                                     </Link>
-                                </Button>
+                                </div>
+
+                                {/* Row 2: Mountains button */}
+                                <Link
+                                    href="/mountains"
+                                    className="relative flex items-center gap-2.5 overflow-hidden rounded-full py-2 px-5 group"
+                                    style={{
+                                        minWidth: "140px",
+                                        background: "linear-gradient(135deg, #1e3a5f 0%, #2d6a9f 100%)",
+                                    }}
+                                >
+                                    {/* Animated mountain layers */}
+                                    <span className="absolute inset-0 overflow-hidden rounded-full pointer-events-none">
+                                        {/* Far peaks — slow sway */}
+                                        <svg
+                                            className="absolute bottom-0 left-0 w-[160%] h-full animate-mtn-far"
+                                            viewBox="0 0 320 48"
+                                            preserveAspectRatio="none"
+                                        >
+                                            <polygon
+                                                fill="white"
+                                                fillOpacity="0.18"
+                                                points="0,48 22,14 44,28 70,4 96,22 120,8 148,26 174,10 200,20 226,6 252,22 278,12 300,24 320,16 320,48"
+                                            />
+                                        </svg>
+                                        {/* Near peaks — faster sway, more opaque */}
+                                        <svg
+                                            className="absolute bottom-0 left-0 w-[160%] h-full animate-mtn-near"
+                                            viewBox="0 0 320 48"
+                                            preserveAspectRatio="none"
+                                        >
+                                            <polygon
+                                                fill="white"
+                                                fillOpacity="0.38"
+                                                points="0,48 16,30 38,40 60,20 82,34 106,22 130,36 154,24 178,38 202,26 226,40 252,28 276,38 298,28 320,34 320,48"
+                                            />
+                                        </svg>
+                                    </span>
+
+                                    {/* Icon: mountain triangle */}
+                                    <svg
+                                        width="14"
+                                        height="14"
+                                        viewBox="0 0 24 24"
+                                        fill="white"
+                                        className="relative shrink-0"
+                                    >
+                                        <path d="M2 21l7.5-12L13 14l3.5-6L22 21H2z" opacity="0.5" />
+                                        <path d="M7 21l5.5-9L16 17l3-5.5L22 21H7z" />
+                                    </svg>
+                                    <span className="relative text-sm font-semibold text-white">Mountains</span>
+                                </Link>
                             </div>
                         </div>
                     </div>

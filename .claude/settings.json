@@ -3,7 +3,23 @@
     "allow": [
       "Bash(npx tsc *)",
       "WebSearch",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(curl -s \"https://www.strava.com/api/v3/athlete/activities?access_token=1aa9562a8328e8772146b9c760fcadd5b7ee0a14&per_page=5\")",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s \"https://www.strava.com/api/v3/athlete/activities?access_token=1aa9562a8328e8772146b9c760fcadd5b7ee0a14&per_page=50&page=1\")",
+      "Bash(python3 -c ' *)",
+      "Bash(curl -s \"https://www.strava.com/api/v3/athlete/activities?access_token=1aa9562a8328e8772146b9c760fcadd5b7ee0a14&per_page=50&page=2\")",
+      "Bash(curl -s \"https://www.strava.com/api/v3/activities/18407315386?access_token=1aa9562a8328e8772146b9c760fcadd5b7ee0a14\")",
+      "Bash(curl -s \"https://www.strava.com/api/v3/athletes/709593/stats?access_token=1aa9562a8328e8772146b9c760fcadd5b7ee0a14\")",
+      "Bash(curl -s \"https://www.strava.com/api/v3/athlete/activities?access_token=1aa9562a8328e8772146b9c760fcadd5b7ee0a14&per_page=5&page=1\")",
+      "Bash(curl -s \"https://www.strava.com/api/v3/activities/18406396299?access_token=1aa9562a8328e8772146b9c760fcadd5b7ee0a14\")",
+      "Bash(curl -s \"https://www.strava.com/api/v3/activities/18406396299/photos?photo_sources=true&size=600&access_token=1aa9562a8328e8772146b9c760fcadd5b7ee0a14\")",
+      "Bash(mkdir -p /Users/nilogba/dev/nilogba.github.io/src/app/training/\\\\[id\\\\] && echo ok)",
+      "Bash(npm run *)",
+      "Bash(curl -s \"https://www.strava.com/api/v3/athlete/activities?access_token=1aa9562a8328e8772146b9c760fcadd5b7ee0a14&per_page=200&page=1\")"
+    ],
+    "additionalDirectories": [
+      "/Users/nilogba/dev/nilogba.github.io/src/app/training"
     ]
   }
 }

@@ -63,6 +63,17 @@ body {
   }
 }
 
+@keyframes mtn-far {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-18px); }
+}
+@keyframes mtn-near {
+  0%   { transform: translateX(5px); }
+  100% { transform: translateX(-12px); }
+}
+.animate-mtn-far  { animation: mtn-far  9s ease-in-out infinite alternate; }
+.animate-mtn-near { animation: mtn-near 6s ease-in-out infinite alternate-reverse; }
+
 @layer base {
   h1 {
     @apply text-2xl md:text-3xl lg:text-[32px] font-normal text-primary;
