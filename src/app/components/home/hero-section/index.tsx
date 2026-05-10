@@ -63,7 +63,8 @@ const HeroSection = () => {
                                     </Link>
                                 </div>
 
-                                {/* Row 2: Mountains button */}
+                                {/* Row 2: Mountains + Travel buttons */}
+                                <div className="flex items-center gap-2">
                                 <Link
                                     href="/mountains"
                                     className="relative flex items-center gap-2.5 overflow-hidden rounded-full py-2 px-5 group"
@@ -113,6 +114,38 @@ const HeroSection = () => {
                                     </svg>
                                     <span className="relative text-sm font-semibold text-white">Mountains</span>
                                 </Link>
+
+                                {/* Travel button */}
+                                <Link
+                                    href="/travel"
+                                    className="relative flex items-center gap-2 overflow-hidden rounded-full py-2 px-4"
+                                    style={{
+                                        background: "linear-gradient(135deg, #0a0f1e 0%, #1a3a6e 100%)",
+                                    }}
+                                >
+                                    {/* Starfield dots */}
+                                    <span className="absolute inset-0 overflow-hidden rounded-full pointer-events-none">
+                                        {[
+                                            { cx: "15%", cy: "30%", r: 1 },
+                                            { cx: "35%", cy: "65%", r: 0.8 },
+                                            { cx: "55%", cy: "25%", r: 1.2 },
+                                            { cx: "72%", cy: "70%", r: 0.7 },
+                                            { cx: "88%", cy: "40%", r: 1 },
+                                        ].map((s, i) => (
+                                            <svg key={i} className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                                <circle cx={s.cx} cy={s.cy} r={s.r} fill="white" fillOpacity="0.5" />
+                                            </svg>
+                                        ))}
+                                    </span>
+                                    {/* Globe icon */}
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" className="relative shrink-0">
+                                        <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="1.5" strokeOpacity="0.9" />
+                                        <ellipse cx="12" cy="12" rx="4" ry="10" stroke="white" strokeWidth="1.5" strokeOpacity="0.9" />
+                                        <line x1="2" y1="12" x2="22" y2="12" stroke="white" strokeWidth="1.5" strokeOpacity="0.9" />
+                                    </svg>
+                                    <span className="relative text-sm font-semibold text-white">Travel</span>
+                                </Link>
+                                </div>
                             </div>
                         </div>
                     </div>

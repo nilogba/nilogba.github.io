@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import Divider from "../components/divider"
 import HikeGallery from "../components/training/hike-gallery"
+import TrekElevationChart from "../components/training/trek-elevation-chart"
 import { StravaActivity } from "../components/training/activity-card"
 
 const HIKE_TYPES = ["Hike", "VirtualHike", "Walk"]
@@ -45,6 +46,9 @@ export default function MountainsPage() {
                                 </p>
                             </div>
                         </div>
+
+                        {/* Elevation chart — static data, always visible */}
+                        <TrekElevationChart />
 
                         {loading && (
                             <div className="border-t border-primary/10 py-24 flex justify-center">

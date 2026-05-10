@@ -46,6 +46,9 @@ export default function TrainingPage() {
 
                         {/* Header */}
                         <div className="flex flex-col max-w-3xl mx-auto py-10 px-4 sm:px-7">
+                            <Link href="/" className="inline-flex items-center gap-2 text-sm text-secondary hover:text-primary transition-colors mb-4">
+                                ← Home
+                            </Link>
                             <div className="flex flex-col gap-1">
                                 <p className="text-sm tracking-[2px] text-primary uppercase font-medium">Training</p>
                                 <p className="text-secondary text-sm">Running log · powered by Strava</p>
