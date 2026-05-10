@@ -39,7 +39,9 @@ export async function GET(
     }
 
     const prefix = `travel/${place}`
-    const url = `https://api.cloudinary.com/v1_1/${cloudName}/resources/image/upload?prefix=${prefix}&max_results=50`
+    const limit = req.nextUrl.searchParams.get("limit") ?? "50"
+    const maxResults = Math.min(Math.max(parseInt(limit, 10) || 50, 1), 500)
+    const url = `https://api.cloudinary.com/v1_1/${cloudName}/resources/image/upload?prefix=${prefix}&max_results=${maxResults}`
 
     const response = await fetch(url, {
         headers: {
