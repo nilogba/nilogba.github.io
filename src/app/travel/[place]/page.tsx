@@ -6,7 +6,6 @@ import Link from "next/link"
 import Image from "next/image"
 import Divider from "../../components/divider"
 import Lightbox from "@/app/components/travel/lightbox"
-import { TRAVEL_PLACES } from "@/app/data/travel-places"
 
 const TOKEN_KEY = "travel_token"
 
@@ -21,8 +20,7 @@ export default function TravelPlacePage() {
     const params = useParams()
     const router = useRouter()
     const placeId = params.place as string
-
-    const place = TRAVEL_PLACES.find((p) => p.id === placeId)
+    const placeName = placeId.charAt(0).toUpperCase() + placeId.slice(1)
 
     const [photos, setPhotos] = useState<Photo[]>([])
     const [loading, setLoading] = useState(true)
@@ -57,14 +55,6 @@ export default function TravelPlacePage() {
         [photos.length]
     )
 
-    if (!place) {
-        return (
-            <main className="min-h-screen flex items-center justify-center">
-                <p className="text-secondary text-sm">Place not found.</p>
-            </main>
-        )
-    }
-
     return (
         <main>
             <section>
@@ -79,9 +69,11 @@ export default function TravelPlacePage() {
                                 ← Travel
                             </Link>
                             <div className="mt-5 flex flex-col gap-1">
-                                <p className="text-sm tracking-[2px] text-primary uppercase font-medium">{place.country}</p>
-                                <h1 className="text-2xl sm:text-3xl font-normal">{place.name}</h1>
-                                <p className="text-secondary text-sm">{place.year}</p>
+                                <p className="text-sm tracking-[2px] text-primary uppercase font-medium">Travel</p>
+                                <h1 className="text-2xl sm:text-3xl font-normal">{placeName}</h1>
+                                {!loading && !error && (
+                                    <p className="text-secondary text-sm">{photos.length} photos</p>
+                                )}
                             </div>
                         </div>
 
@@ -104,7 +96,7 @@ export default function TravelPlacePage() {
                         {/* Empty */}
                         {!loading && !error && photos.length === 0 && (
                             <div className="border-t border-primary/10 py-24 flex justify-center">
-                                <p className="text-secondary text-sm">No photos yet for this location.</p>
+                                <p className="text-secondary text-sm">No photos in this folder.</p>
                             </div>
                         )}
 

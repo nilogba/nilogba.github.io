@@ -13,10 +13,12 @@ interface CloudinaryResource {
     secure_url: string
     width: number
     height: number
+    asset_folder: string
 }
 
-interface CloudinaryResponse {
+interface CloudinarySearchResponse {
     resources: CloudinaryResource[]
+    total_count: number
 }
 
 export async function GET(
@@ -38,29 +40,33 @@ export async function GET(
         return NextResponse.json({ error: "Cloudinary not configured" }, { status: 500 })
     }
 
-    const prefix = `travel/${place}`
     const limit = req.nextUrl.searchParams.get("limit") ?? "50"
     const maxResults = Math.min(Math.max(parseInt(limit, 10) || 50, 1), 500)
-    const url = `https://api.cloudinary.com/v1_1/${cloudName}/resources/image/upload?prefix=${prefix}&max_results=${maxResults}`
 
-    const response = await fetch(url, {
+    // Use Cloudinary Search API — works with the new asset_folder system
+    const expression = `asset_folder="travel/${place}"`
+    const searchUrl = new URL(`https://api.cloudinary.com/v1_1/${cloudName}/resources/search`)
+    searchUrl.searchParams.set("expression", expression)
+    searchUrl.searchParams.set("max_results", String(maxResults))
+
+    const res = await fetch(searchUrl.toString(), {
         headers: {
             Authorization: `Basic ${Buffer.from(`${apiKey}:${apiSecret}`).toString("base64")}`,
         },
-        next: { revalidate: 86400 },
+        next: { revalidate: 3600 },
     })
 
-    if (!response.ok) {
+    if (!res.ok) {
         return NextResponse.json({ error: "Failed to fetch photos" }, { status: 502 })
     }
 
-    const data: CloudinaryResponse = await response.json()
-    const photos = data.resources.map((r) => ({
+    const data: CloudinarySearchResponse = await res.json()
+    const photos = (data.resources ?? []).map((r) => ({
         url: r.secure_url,
         width: r.width,
         height: r.height,
         publicId: r.public_id,
     }))
 
-    return NextResponse.json({ photos })
+    return NextResponse.json({ photos, total: data.total_count })
 }

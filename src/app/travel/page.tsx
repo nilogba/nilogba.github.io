@@ -4,15 +4,19 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import Divider from "../components/divider"
-import { TRAVEL_PLACES, TravelPlace } from "@/app/data/travel-places"
 
 const TOKEN_KEY = "travel_token"
 
-function PlaceCard({ place, token }: { place: TravelPlace; token: string }) {
+interface Folder {
+    id: string
+    name: string
+}
+
+function PlaceCard({ folder, token }: { folder: Folder; token: string }) {
     const [thumb, setThumb] = useState<string | null>(null)
 
     useEffect(() => {
-        fetch(`/api/travel/photos/${place.id}?limit=1`, {
+        fetch(`/api/travel/photos/${folder.id}?limit=1`, {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((r) => r.json())
@@ -21,17 +25,17 @@ function PlaceCard({ place, token }: { place: TravelPlace; token: string }) {
                 if (url) setThumb(url)
             })
             .catch(() => {})
-    }, [place.id, token])
+    }, [folder.id, token])
 
     return (
         <Link
-            href={`/travel/${place.id}`}
+            href={`/travel/${folder.id}`}
             className="relative aspect-square overflow-hidden rounded-sm bg-primary/5 block group"
         >
             {thumb ? (
                 <Image
                     src={thumb}
-                    alt={place.name}
+                    alt={folder.name}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 640px) 50vw, 33vw"
@@ -41,8 +45,7 @@ function PlaceCard({ place, token }: { place: TravelPlace; token: string }) {
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-3">
-                <p className="text-white text-sm font-medium leading-tight">{place.name}</p>
-                <p className="text-white/55 text-xs mt-0.5">{place.country} · {place.year}</p>
+                <p className="text-white text-sm font-medium leading-tight">{folder.name}</p>
             </div>
         </Link>
     )
@@ -51,6 +54,8 @@ function PlaceCard({ place, token }: { place: TravelPlace; token: string }) {
 export default function TravelPage() {
     const [phase, setPhase] = useState<"loading" | "gate" | "content">("loading")
     const [token, setToken] = useState("")
+    const [folders, setFolders] = useState<Folder[]>([])
+    const [foldersLoading, setFoldersLoading] = useState(false)
     const [passkey, setPasskey] = useState("")
     const [error, setError] = useState("")
     const [submitting, setSubmitting] = useState(false)
@@ -69,6 +74,19 @@ export default function TravelPage() {
     useEffect(() => {
         if (phase === "gate") inputRef.current?.focus()
     }, [phase])
+
+    // Fetch folder list from Cloudinary once authenticated
+    useEffect(() => {
+        if (phase !== "content" || !token) return
+        setFoldersLoading(true)
+        fetch("/api/travel/folders", {
+            headers: { Authorization: `Bearer ${token}` },
+        })
+            .then((r) => r.json())
+            .then((data) => setFolders(data.folders ?? []))
+            .catch(() => {})
+            .finally(() => setFoldersLoading(false))
+    }, [phase, token])
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
@@ -151,18 +169,30 @@ export default function TravelPage() {
                             <div className="mt-5 flex flex-col gap-2">
                                 <p className="text-sm tracking-[2px] text-primary uppercase font-medium">Travel</p>
                                 <h1 className="text-2xl sm:text-3xl font-normal">Places</h1>
-                                <p className="text-secondary text-sm">{TRAVEL_PLACES.length} destinations</p>
+                                <p className="text-secondary text-sm">
+                                    {foldersLoading ? "Loading…" : `${folders.length} destinations`}
+                                </p>
                             </div>
                         </div>
 
                         {/* Place tiles */}
                         <div className="border-t border-primary/10">
                             <div className="max-w-3xl mx-auto px-4 sm:px-7 py-6">
-                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                                    {TRAVEL_PLACES.map((place) => (
-                                        <PlaceCard key={place.id} place={place} token={token} />
-                                    ))}
-                                </div>
+                                {foldersLoading ? (
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                        {[...Array(3)].map((_, i) => (
+                                            <div key={i} className="aspect-square rounded-sm bg-primary/5 animate-pulse" />
+                                        ))}
+                                    </div>
+                                ) : folders.length === 0 ? (
+                                    <p className="text-secondary text-sm py-12 text-center">No destinations found.</p>
+                                ) : (
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                        {folders.map((folder) => (
+                                            <PlaceCard key={folder.id} folder={folder} token={token} />
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
