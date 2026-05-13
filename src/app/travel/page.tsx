@@ -16,7 +16,7 @@ function PlaceCard({ folder, token }: { folder: Folder; token: string }) {
     const [thumb, setThumb] = useState<string | null>(null)
 
     useEffect(() => {
-        fetch(`/api/travel/photos/${folder.id}?limit=1`, {
+        fetch(`/api/travel/photos/${folder.id}?limit=1&type=image`, {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((r) => r.json())
