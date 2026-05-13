@@ -57,7 +57,7 @@ export async function GET(
         headers: {
             Authorization: `Basic ${Buffer.from(`${apiKey}:${apiSecret}`).toString("base64")}`,
         },
-        next: { revalidate: 3600 },
+        cache: "no-store",
     })
 
     if (!res.ok) {

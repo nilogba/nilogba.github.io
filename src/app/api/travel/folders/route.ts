@@ -37,7 +37,7 @@ export async function GET(req: NextRequest) {
             headers: {
                 Authorization: `Basic ${Buffer.from(`${apiKey}:${apiSecret}`).toString("base64")}`,
             },
-            next: { revalidate: 3600 },
+            cache: "no-store",
         }
     )
 
