@@ -7,7 +7,7 @@ import HikeGallery from "../components/training/hike-gallery"
 import TrekElevationChart from "../components/training/trek-elevation-chart"
 import { StravaActivity } from "../components/training/activity-card"
 
-const HIKE_TYPES = ["Hike", "VirtualHike", "Walk"]
+const HIKE_TYPES = ["Hike", "VirtualHike"]
 
 export default function MountainsPage() {
     const [hikes, setHikes] = useState<StravaActivity[]>([])
