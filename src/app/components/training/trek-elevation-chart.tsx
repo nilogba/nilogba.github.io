@@ -17,6 +17,7 @@ const TREKS: Trek[] = [
     { name: "Hampta Pass",           peakMeters: 4270, date: "Aug 2025", sortKey: "2025-08" },
     { name: "Brahmatal",             peakMeters: 3640, date: "Jan 2026", sortKey: "2026-01" },
     { name: "Chopta Chandrashila",   peakMeters: 4000, date: "Mar 2026", sortKey: "2026-03" },
+    { name: "Bhrigu Lake",           peakMeters: 4269, date: "Jun 2026", sortKey: "2026-06" },
 ]
 
 const REFS = [
